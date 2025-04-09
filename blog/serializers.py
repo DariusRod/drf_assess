@@ -1,24 +1,20 @@
+
 from rest_framework import serializers
-from .models import Post, Comment 
+from .models import Post, Comment
 
-
-# Serializer for the Post model
+# serializer for the Post model
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
-        # fields to include in the serialized output
         model = Post
-        fields = ['id', 'title', 'author','content', 'created_at', 'updated_at']
-
-        # fields that should be read-only (not editable through the API)
+        # Specify the fields to be included in the serialized output
+        fields = ['id', 'title', 'content', 'author', 'created_at', 'updated_at']
         read_only_fields = ['created_at', 'updated_at']
 
 
 # Serializer for the Comment model
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
-        # fields to include in the serialized output
         model = Comment
-        fields = ['id', 'content', 'author', 'post', 'created_at', 'updated_at']
-
-        # fields that should be read-only (not editable through the API)
-        read_only_fields = ['created_at', 'updated_at']
+        fields = ['id', 'content', 'author', 'created_at', 'updated_at', 'post']
+        # VITAL LINE: Make sure 'post' is listed here!
+        read_only_fields = ['created_at', 'updated_at', 'post']

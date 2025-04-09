@@ -1,5 +1,3 @@
-# blog/models.py
-
 from django.db import models
 
 # Represents a blog post
@@ -19,7 +17,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-# Represents a comment on a blog post
+#  comment on a blog post
 class Comment(models.Model):
     # Content of the comment
     content = models.TextField()
@@ -31,7 +29,7 @@ class Comment(models.Model):
     # related_name='comments' allows accessing comments from a post object (e.g., post.comments.all())
     # on_delete=models.CASCADE ensures that if a post is deleted, all its comments are also deleted.
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
-    # Author's name for the comment
+ 
     author = models.CharField(max_length=100)
 
     # String representation of the Comment object
