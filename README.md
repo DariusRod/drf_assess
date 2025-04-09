@@ -9,7 +9,7 @@ Follow these steps to set up the project locally:
 1.  **Clone the Repository:**
     ```bash
     git clone git@github.com:DariusRod/drf_assess.git
-    cd <repository-directory-name>
+    cd drf_assess
     ```
 
 2.  **Create a Python Virtual Environment:**
