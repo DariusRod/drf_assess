@@ -8,7 +8,7 @@ Follow these steps to set up the project locally:
 
 1.  **Clone the Repository:**
     ```bash
-    git clone <your-repository-url>
+    git clone git@github.com:DariusRod/drf_assess.git
     cd <repository-directory-name>
     ```
 
