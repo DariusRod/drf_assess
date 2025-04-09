@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "django_filters",
     "blog",
 
 ]
@@ -90,6 +91,17 @@ REST_FRAMEWORK = {
     # pagination settings
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 4, # Show 4 items per page
+
+
+
+
+    # filter settings
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend', # For field filtering
+        'rest_framework.filters.SearchFilter',             # For search
+        'rest_framework.filters.OrderingFilter',           # Optional: For ordering results
+        ],
+
 
 
       'DEFAULT_THROTTLE_CLASSES': [

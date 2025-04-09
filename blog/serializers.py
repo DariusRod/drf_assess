@@ -1,20 +1,40 @@
-
 from rest_framework import serializers
-from .models import Post, Comment
+from .models import Post, Comment, Category 
 
-# serializer for the Post model
+# category serializer
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name']
+
+# PostSerializer ---
 class PostSerializer(serializers.ModelSerializer):
+    # To show category names instead of IDs (Optional, makes API nicer)
+    # Use StringRelatedField for read-only names
+    # categories = serializers.StringRelatedField(many=True, read_only=True)
+
+    
+    categories = serializers.PrimaryKeyRelatedField(
+        queryset=Category.objects.all(),
+        many=True,
+        required=False # Allow creating/updating posts without categories
+    )
+
     class Meta:
         model = Post
-        # Specify the fields to be included in the serialized output
-        fields = ['id', 'title', 'content', 'author', 'created_at', 'updated_at']
-        read_only_fields = ['created_at', 'updated_at']
+        # Add 'likes', 'dislikes', 'categories' to fields
+        fields = [
+            'id', 'title', 'content', 'author',
+            'created_at', 'updated_at',
+            'likes', 'dislikes', # Add counts
+            'categories'       # Add categories field
+        ]
+        # read-only
+        read_only_fields = ['created_at', 'updated_at', 'likes', 'dislikes']
 
-
-# Serializer for the Comment model
+#  CommentSerializer
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = ['id', 'content', 'author', 'created_at', 'updated_at', 'post']
-        # VITAL LINE: Make sure 'post' is listed here!
         read_only_fields = ['created_at', 'updated_at', 'post']
