@@ -28,7 +28,7 @@ class PostRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    # No permission classes needed, any user can update/delete.
+    # No permission classes needed
     # The lookup field defaults to 'pk' (primary key, which is 'id' in our case)
 
 
@@ -106,6 +106,4 @@ class CommentRetrieveDestroyView(generics.RetrieveDestroyAPIView):
         # Filter comments by both post_id and comment_id to ensure correctness
         return Comment.objects.filter(post_id=post_id, pk=comment_id)
 
-    # Optional: Add a custom delete method if needed, but generic view handles it.
-    # def perform_destroy(self, instance):
-    #     instance.delete() # Standard behavior  
+    

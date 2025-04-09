@@ -85,17 +85,25 @@ DATABASES = {
 
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    # Since the challenge requires no authentication and full access,
-    # the default 'AllowAny' is sufficient, so we don't strictly need this line.
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.AllowAny',
-    # ],
 
-    # Add pagination settings
+    
+    # pagination settings
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10  # Show 10 items per page
+    'PAGE_SIZE': 4, # Show 4 items per page
+
+
+      'DEFAULT_THROTTLE_CLASSES': [
+        # Add UserRateThrottle here
+        'rest_framework.throttling.UserRateThrottle',
+        # AnonRateThrottle for unauthenticated users if you have mixed access
+        # 'rest_framework.throttling.AnonRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        # Define a scope named 'user' that UserRateThrottle uses by default
+        'user': '100/day',  #  100 requests per user per day
+        # 'anon': '10/min'   # Example: Define 'anon' scope if using AnonRateThrottle too
+    }
+    
 }
 
 

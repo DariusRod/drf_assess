@@ -2,8 +2,6 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from .models import Post, Comment
-# from .serializers import PostSerializer, CommentSerializer # Import serializers if needed for direct comparison
-
 
 class BlogAPITests(APITestCase):
 
