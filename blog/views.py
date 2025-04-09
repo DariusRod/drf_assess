@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from rest_framework.decorators import action
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle # Import throttle classes
-from .models import Post, Comment, Category # Import all relevant models
-from .serializers import PostSerializer, CommentSerializer, CategorySerializer # Import all relevant serializers
+from .models import Post, Comment, Category 
+from .serializers import PostSerializer, CommentSerializer, CategorySerializer 
 
 
 
